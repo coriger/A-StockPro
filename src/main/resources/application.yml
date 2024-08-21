@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: A-StockPro
+  datasource:
+    url: jdbc:mysql://localhost:3306/a-stock-pro
+    username: root
+    password: xxt123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml  # 如果需要自定义SQL文件
+  type-aliases-package: com.coriger.entity
+  global-config:
+    db-config:
+      id-type: auto
+
+server:
+  port: 8080
