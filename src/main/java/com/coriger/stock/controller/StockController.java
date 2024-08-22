@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.coriger.stock.model.entity.Stock;
 import com.coriger.stock.service.StockService;
 
-@Api
+@RestController
+@RequestMapping("/stock")
 public class StockController {
 
     @Autowired
     private StockService stockService;
 
-    @RequestMapping("/stocks")
+    @RequestMapping("/list")
     public List<Stock> getStocks() {
         return stockService.list();
     }
