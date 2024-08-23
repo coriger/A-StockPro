@@ -14,7 +14,7 @@
     </insert>
 
 
-    <select id="getLastSyncTime" parameterType="String" resultType="date">
+    <select id="getLastSyncTime" parameterType="String" resultType="java.time.LocalDate">
         SELECT trade_date FROM t_stock_week WHERE stock_code = #{stockCode} ORDER BY trade_date DESC LIMIT 1
     </select>
 

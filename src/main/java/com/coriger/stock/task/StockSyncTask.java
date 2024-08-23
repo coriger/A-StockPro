@@ -33,7 +33,7 @@ public class StockSyncTask {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Scheduled(cron = "0 0 22 * * ?")
+    @Scheduled(cron = "0 15 22 * * ?")
     public void syncStockDay() {
         // 查询所有股票
         List<Stock> stocks = stockService.list();
@@ -81,7 +81,7 @@ public class StockSyncTask {
     }
 
 
-    @Scheduled(cron = "0 0 22 ? * 5")
+    @Scheduled(cron = "0 15 22 ? * 5")
     public void syncStockWeek() {
         // 查询所有股票
         List<Stock> stocks = stockService.list();
