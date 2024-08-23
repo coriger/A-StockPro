@@ -1,6 +1,7 @@
 spring:
   application:
     name: A-StockPro
+  timezone: Asia/Shanghai
   datasource:
     url: jdbc:mysql://localhost:3306/a-stock-pro
     username: root
@@ -15,4 +16,4 @@ mybatis-plus:
       id-type: auto
 
 server:
-  port: 8080
+  port: 8090

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coriger.stock.model.entity.Stock;
+import com.coriger.stock.service.StockDayService;
 import com.coriger.stock.service.StockService;
+import com.coriger.stock.service.StockWeekService;
 
 @RestController
 @RequestMapping("/stock")
@@ -22,30 +24,34 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @RequestMapping("/list")
-    public List<Stock> getStocks() {
-        return stockService.list();
+    @Autowired
+    private StockDayService stockDayService;
+
+    @Autowired
+    private StockWeekService stockWeekService;    
+
+    /**
+     * 初始化个股数据
+     */
+    @RequestMapping("/init")
+    public void initStocks() {
+        stockService.initStocks();
     }
 
-    @GetMapping("/{id}")
-    public Stock getStockById(@PathVariable Long id) {
-        return stockService.getById(id);
+    /**
+     * 初始化个股日线数据
+     */
+    @RequestMapping("/initDay")
+    public void initStocksDay() {
+        stockDayService.initStocksDay();
     }
 
-    @PostMapping
-    public boolean createStock(@RequestBody Stock stock) {
-        return stockService.save(stock);
-    }
-
-    @PutMapping("/{id}")
-    public boolean updateStock(@PathVariable Long id, @RequestBody Stock stock) {
-        stock.setId(id);
-        return stockService.updateById(stock);
-    }
-
-    @DeleteMapping("/{id}")
-    public boolean deleteStock(@PathVariable Long id) {
-        return stockService.removeById(id);
+    /**
+     * 初始化个股周线数据
+     */
+    @RequestMapping("/initWeek")
+    public void initStocksWeek() {
+        stockWeekService.initStocksWeek();
     }
 
 }

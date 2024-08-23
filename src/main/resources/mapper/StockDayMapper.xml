@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coriger.stock.mapper.StockDayMapper">
+
+    <insert id="insertBatch">
+        INSERT INTO t_stock_day (stock_code, open, close, high, low, trade_date, volume, amount)
+        VALUES
+        <foreach collection="stockDayList" item="item" separator=",">
+            (#{item.stockCode}, #{item.open}, #{item.close}, #{item.high}, #{item.low}, #{item.tradeDate}, #{item.volume}, #{item.amount})
+        </foreach>
+    </insert>
+
+
+    <select id="getLastSyncTime" parameterType="String" resultType="date">
+        SELECT trade_date FROM t_stock_day WHERE stock_code = #{stockCode} ORDER BY trade_date DESC LIMIT 1
+    </select>
+
+</mapper>
